@@ -1,8 +1,19 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, CircleMarker } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, CircleMarker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { SimulationTag } from '../common/Badge';
 import { formatCoordinates } from '../../utils/formatters';
+
+function MapResizer() {
+  const map = useMap();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [map]);
+  return null;
+}
 
 const createShipIcon = (heading = 0) => {
   const html = `
@@ -26,7 +37,7 @@ export const RouteMap = ({
   waypoints = [],
   currentPosition,
   vesselName = 'Vessel',
-  height = '420px',
+  height = '450px',
   deviationNm = 0,
 }) => {
   if (!origin || !destination) {
@@ -56,7 +67,7 @@ export const RouteMap = ({
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
           <h4 className="font-semibold text-white text-xs tracking-wide">
-            Transit Navigation & Route Polyline
+            Transit Navigation &amp; Route Polyline
           </h4>
           {deviationNm > 0 && (
             <span className="text-[11px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">
@@ -64,20 +75,24 @@ export const RouteMap = ({
             </span>
           )}
         </div>
-        <SimulationTag label="Simulated Coordinates" />
+        <SimulationTag label="OpenStreetMap Live Tiles" />
       </div>
 
       {/* Map Canvas */}
-      <div style={{ height }} className="w-full relative z-[1]">
+      <div style={{ height, minHeight: '420px' }} className="w-full relative z-[1]">
         <MapContainer
           center={[centerLat, centerLng]}
           zoom={4}
           scrollWheelZoom={true}
-          style={{ height: '100%', width: '100%' }}
+          style={{ height: '100%', width: '100%', minHeight: '420px' }}
         >
+          <MapResizer />
+
+          {/* Standard OpenStreetMap Free Tiles */}
           <TileLayer
-            attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxZoom={19}
           />
 
           {/* Planned Route Line */}
@@ -178,6 +193,7 @@ export const RouteMap = ({
             &mdash; - Planned Corridor
           </span>
         </div>
+        <span className="text-[11px] text-slate-400">OpenStreetMap (Zero API Key Required)</span>
       </div>
     </div>
   );

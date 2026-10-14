@@ -1,9 +1,21 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { Link } from 'react-router-dom';
 import { Badge, SimulationTag } from '../common/Badge';
 import { formatCoordinates } from '../../utils/formatters';
+
+// Map Auto-resizer component to ensure Leaflet renders immediately without grey tile glitch
+function MapResizer() {
+  const map = useMap();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [map]);
+  return null;
+}
 
 // Factory to create custom SVG ship marker icons with heading rotation and status colors
 const createVesselIcon = (status, heading = 0) => {
@@ -48,21 +60,24 @@ export const FleetMap = ({ vessels = [], height = '500px' }) => {
           </h3>
           <span className="text-xs text-slate-400">({vessels.length} tracked vessels)</span>
         </div>
-        <SimulationTag label="Demo / Simulated Telemetry" />
+        <SimulationTag label="OpenStreetMap Live Tiles" />
       </div>
 
       {/* Leaflet Map Canvas */}
-      <div style={{ height }} className="w-full relative z-[1]">
+      <div style={{ height, minHeight: '480px' }} className="w-full relative z-[1]">
         <MapContainer
           center={defaultCenter}
           zoom={defaultZoom}
           scrollWheelZoom={true}
-          style={{ height: '100%', width: '100%' }}
+          style={{ height: '100%', width: '100%', minHeight: '480px' }}
         >
-          {/* CartoDB Dark Matter Tiles for Maritime Control Look */}
+          <MapResizer />
+
+          {/* Standard OpenStreetMap Free Tiles (Zero API key required) */}
           <TileLayer
-            attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxZoom={19}
           />
 
           {vessels.map((v) => {
@@ -123,7 +138,7 @@ export const FleetMap = ({ vessels = [], height = '500px' }) => {
             <span className="w-2.5 h-2.5 rounded-full bg-slate-400" /> Idle
           </span>
         </div>
-        <span className="text-[11px] text-slate-400">OpenStreetMap / Carto Tiles</span>
+        <span className="text-[11px] text-slate-400">OpenStreetMap (Free &amp; Open Source - No API Key)</span>
       </div>
     </div>
   );
