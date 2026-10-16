@@ -89,19 +89,19 @@ export const VesselDetail = () => {
       </div>
 
       {/* Vessel Header Profile Card */}
-      <div className="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-6">
+      <div className="glass-panel p-6 rounded-2xl border border-sky-100 bg-white shadow-sm flex flex-wrap items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-ocean-500/20 to-teal-500/20 border border-ocean-500/30 flex items-center justify-center text-ocean-400">
+          <div className="w-16 h-16 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shadow-sm">
             <Ship className="w-8 h-8" />
           </div>
           <div>
             <div className="flex items-center gap-2.5">
-              <h1 className="text-2xl font-bold text-white tracking-tight">{vessel.name}</h1>
+              <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{vessel.name}</h1>
               <Badge status={vessel.status} size="md" />
               <SimulationTag />
             </div>
-            <p className="text-xs text-slate-400 mt-1">
-              IMO: <span className="text-slate-200 font-semibold">{vessel.imoNumber}</span> &bull; Flag: <span className="text-slate-200">{vessel.flag}</span> &bull; Type: <span className="text-slate-200">{vessel.type}</span> &bull; DWT: <span className="text-slate-200">{formatNumber(vessel.capacityDwt)} MT</span>
+            <p className="text-xs text-slate-500 mt-1">
+              IMO: <span className="text-slate-800 font-semibold">{vessel.imoNumber}</span> &bull; Flag: <span className="text-slate-700">{vessel.flag}</span> &bull; Type: <span className="text-slate-700">{vessel.type}</span> &bull; DWT: <span className="text-slate-700">{formatNumber(vessel.capacityDwt)} MT</span>
             </p>
           </div>
         </div>
@@ -109,19 +109,19 @@ export const VesselDetail = () => {
         {/* Live Status Chip */}
         <div className="flex items-center gap-4">
           {risk && (
-            <div className="text-right border-r border-slate-800 pr-4">
-              <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+            <div className="text-right border-r border-sky-100 pr-4">
+              <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
                 Rule-based Risk Score
               </p>
               <div className="flex items-center gap-2 justify-end mt-0.5">
-                <span className="text-xl font-black text-white">{risk.score}/100</span>
+                <span className="text-xl font-black text-slate-900">{risk.score}/100</span>
                 <span
-                  className={`px-2 py-0.5 text-xs font-bold rounded ${
+                  className={`px-2 py-0.5 text-xs font-bold rounded-full border ${
                     risk.score >= 70
-                      ? 'bg-rose-500/20 text-rose-300'
+                      ? 'bg-rose-50 text-rose-700 border-rose-200'
                       : risk.score >= 40
-                      ? 'bg-amber-500/20 text-amber-300'
-                      : 'bg-emerald-500/20 text-emerald-300'
+                      ? 'bg-amber-50 text-amber-700 border-amber-200'
+                      : 'bg-emerald-50 text-emerald-700 border-emerald-200'
                   }`}
                 >
                   {risk.category} Risk
@@ -131,18 +131,18 @@ export const VesselDetail = () => {
           )}
 
           <div>
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
               Current Speed & Heading
             </p>
-            <p className="text-lg font-bold text-slate-200 mt-0.5">
-              {pos?.speedKnots || 0} kn <span className="text-xs font-normal text-slate-400">@ {pos?.heading || 0}°</span>
+            <p className="text-lg font-bold text-slate-900 mt-0.5">
+              {pos?.speedKnots || 0} kn <span className="text-xs font-normal text-slate-500">@ {pos?.heading || 0}°</span>
             </p>
           </div>
         </div>
       </div>
 
       {/* Tabs Navigation */}
-      <div className="border-b border-slate-800 flex items-center gap-2 overflow-x-auto text-xs font-semibold">
+      <div className="border-b border-sky-100 flex items-center gap-2 overflow-x-auto text-xs font-semibold">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -152,8 +152,8 @@ export const VesselDetail = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-3 border-b-2 transition whitespace-nowrap ${
                 isActive
-                  ? 'border-ocean-500 text-ocean-400 bg-ocean-500/5'
-                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                  ? 'border-sky-500 text-sky-600 bg-sky-50/80 font-bold'
+                  : 'border-transparent text-slate-500 hover:text-sky-600 hover:border-sky-200'
               }`}
             >
               <Icon className="w-4 h-4" />

@@ -50,15 +50,15 @@ export const FleetMap = ({ vessels = [], height = '500px' }) => {
   const defaultZoom = 3;
 
   return (
-    <div className="relative glass-panel rounded-xl overflow-hidden border border-slate-800 flex flex-col">
+    <div className="relative glass-panel rounded-xl overflow-hidden border border-sky-100 bg-white shadow-sm flex flex-col">
       {/* Map Header Overlay */}
-      <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-maritime-900/90 z-[400] relative">
+      <div className="p-4 border-b border-sky-100 flex items-center justify-between bg-white z-[400] relative">
         <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-          <h3 className="font-semibold text-white text-sm tracking-wide">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <h3 className="font-bold text-slate-900 text-sm tracking-wide">
             Global Fleet Operations Map
           </h3>
-          <span className="text-xs text-slate-400">({vessels.length} tracked vessels)</span>
+          <span className="text-xs text-slate-500 font-medium">({vessels.length} tracked vessels)</span>
         </div>
         <SimulationTag label="OpenStreetMap Live Tiles" />
       </div>
@@ -90,26 +90,26 @@ export const FleetMap = ({ vessels = [], height = '500px' }) => {
               <Marker key={v._id} position={[pos.lat, pos.lng]} icon={icon}>
                 <Popup>
                   <div className="p-1 min-w-[200px] text-xs">
-                    <div className="flex items-center justify-between gap-2 border-b border-slate-700 pb-2 mb-2">
-                      <h4 className="font-bold text-white text-sm">{v.name}</h4>
+                    <div className="flex items-center justify-between gap-2 border-b border-sky-100 pb-2 mb-2">
+                      <h4 className="font-bold text-slate-900 text-sm">{v.name}</h4>
                       <Badge status={v.status} size="xs" />
                     </div>
 
-                    <div className="space-y-1 text-slate-300">
-                      <div><span className="text-slate-400">Type:</span> {v.type}</div>
-                      <div><span className="text-slate-400">IMO:</span> {v.imoNumber} ({v.flag})</div>
-                      <div><span className="text-slate-400">Speed:</span> {pos.speedKnots || 0} knots</div>
-                      <div><span className="text-slate-400">Heading:</span> {pos.heading || 0}°</div>
-                      <div><span className="text-slate-400">Pos:</span> {formatCoordinates(pos.lat, pos.lng)}</div>
+                    <div className="space-y-1 text-slate-700">
+                      <div><span className="text-slate-500">Type:</span> {v.type}</div>
+                      <div><span className="text-slate-500">IMO:</span> {v.imoNumber} ({v.flag})</div>
+                      <div><span className="text-slate-500">Speed:</span> {pos.speedKnots || 0} knots</div>
+                      <div><span className="text-slate-500">Heading:</span> {pos.heading || 0}°</div>
+                      <div><span className="text-slate-500">Pos:</span> {formatCoordinates(pos.lat, pos.lng)}</div>
                       <div className="pt-1">
-                        <span className="text-[10px] text-purple-400 font-medium">Source: {pos.source || 'demo-simulated'}</span>
+                        <span className="text-[10px] text-sky-600 font-semibold">Source: {pos.source || 'demo-simulated'}</span>
                       </div>
                     </div>
 
-                    <div className="mt-3 pt-2 border-t border-slate-700/60">
+                    <div className="mt-3 pt-2 border-t border-sky-100">
                       <Link
                         to={`/vessels/${v._id}`}
-                        className="block text-center py-1.5 px-3 bg-ocean-600 hover:bg-ocean-500 text-white font-medium rounded text-xs transition"
+                        className="block text-center py-1.5 px-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-lg text-xs transition shadow-md shadow-sky-500/20"
                       >
                         View Full Telemetry & Specs &rarr;
                       </Link>

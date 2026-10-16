@@ -9,30 +9,37 @@ export default {
     extend: {
       colors: {
         maritime: {
-          950: '#060e1a', // Midnight Ocean
-          900: '#0b192c', // Deep Navy
-          850: '#0f223d', // Card Dark
-          800: '#1e293b', // Marine Slate Dark
-          700: '#334155', // Slate
-          600: '#475569',
-          500: '#64748b',
-          400: '#94a3b8',
-          300: '#cbd5e1',
-          200: '#e2e8f0',
-          100: '#f1f5f9',
-          50: '#f8fafc',
+          950: '#f0f9ff', // Airy Sky White
+          900: '#ffffff', // Pure White
+          850: '#ffffff', // Pure White Card
+          800: '#f8fafc', // Light Slate / Off-white
+          700: '#e0f2fe', // Sky 100 Border
+          600: '#bae6fd', // Sky 200 Border
+          500: '#64748b', // Muted Slate
+          400: '#475569', // Body Slate
+          300: '#334155', // Deep Slate
+          200: '#1e293b', // Heading Slate
+          100: '#0f172a', // Primary Dark Slate
+          50: '#ffffff',  // Pure White
         },
         ocean: {
-          500: '#0284c7', // Primary Ocean Blue
-          600: '#0369a1',
-          400: '#38bdf8',
-          100: '#e0f2fe',
+          600: '#0284c7', // Rich Sky Blue
+          500: '#0ea5e9', // Vibrant Sky Blue
+          400: '#38bdf8', // Bright Sky Blue
+          300: '#7dd3fc', // Soft Sky Blue
+          200: '#bae6fd', // Ice Sky Blue
+          100: '#e0f2fe', // Lightest Sky Tint
+          50: '#f0f9ff',  // Pure Sky Tint
         },
         teal: {
-          500: '#0d9488', // Maritime High Seas Teal
-          600: '#0f766e',
-          400: '#14b8a6',
+          600: '#0369a1',
+          500: '#0284c7',
+          400: '#38bdf8',
         },
+      },
+      boxShadow: {
+        'sky-glow': '0 4px 20px -2px rgba(14, 165, 233, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
+        'sky-glow-lg': '0 10px 30px -4px rgba(14, 165, 233, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.06)',
       },
     },
   },

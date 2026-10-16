@@ -205,7 +205,7 @@ export const Cargo = () => {
         hasRole('Admin', 'Cargo Manager') && s.status !== 'Delivered' && (
           <button
             onClick={() => openStatusModal(s)}
-            className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-ocean-400 hover:text-white transition"
+            className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 transition"
           >
             Update Status
           </button>
@@ -220,10 +220,10 @@ export const Cargo = () => {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">Cargo Logistics & Manifest Tracking</h1>
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Cargo Logistics & Manifest Tracking</h1>
             <SimulationTag />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Commercial shipment manifest, lifecycle transitions (Booked &rarr; Loaded &rarr; In Transit &rarr; Delivered), and delay notifications.
           </p>
         </div>
@@ -247,10 +247,10 @@ export const Cargo = () => {
               setFormError('');
               setCreateModalOpen(true);
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-ocean-600 hover:bg-ocean-500 text-white font-medium text-xs rounded-lg transition shadow-md shadow-ocean-600/30"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs rounded-xl transition shadow-md shadow-sky-500/20"
           >
-            <Plus className="w-4 h-4" />
-            <span>Register New Shipment</span>
+            <Plus className="w-4 h-4 text-white" />
+            <span className="text-white">Register New Shipment</span>
           </button>
         )}
       </div>

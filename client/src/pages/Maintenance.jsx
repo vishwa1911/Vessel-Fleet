@@ -206,32 +206,32 @@ export const Maintenance = () => {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">Maintenance & Equipment Risk</h1>
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Maintenance & Equipment Risk</h1>
             <SimulationTag />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Preventative maintenance scheduling, running hours tracking, and transparent rule-based risk matrix.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center bg-maritime-900 border border-slate-700 rounded-lg p-1 text-xs">
+          <div className="flex items-center bg-white border border-sky-200 rounded-xl p-1 text-xs shadow-sm">
             <button
               onClick={() => setActiveView('tasks')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition ${
+              className={`px-3 py-1.5 rounded-lg font-semibold transition ${
                 activeView === 'tasks'
-                  ? 'bg-ocean-600 text-white'
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-sky-500 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-sky-600'
               }`}
             >
               Work Orders List
             </button>
             <button
               onClick={() => setActiveView('riskMatrix')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition ${
+              className={`px-3 py-1.5 rounded-lg font-semibold transition ${
                 activeView === 'riskMatrix'
-                  ? 'bg-ocean-600 text-white'
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-sky-500 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-sky-600'
               }`}
             >
               Fleet Risk Matrix (0-100)
@@ -256,10 +256,10 @@ export const Maintenance = () => {
                 setFormError('');
                 setScheduleModalOpen(true);
               }}
-              className="flex items-center gap-2 px-4 py-2 bg-ocean-600 hover:bg-ocean-500 text-white font-medium text-xs rounded-lg transition shadow-md shadow-ocean-600/30"
+              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs rounded-xl transition shadow-md shadow-sky-500/20"
             >
-              <Plus className="w-4 h-4" />
-              <span>Schedule Maintenance</span>
+              <Plus className="w-4 h-4 text-white" />
+              <span className="text-white">Schedule Maintenance</span>
             </button>
           )}
         </div>

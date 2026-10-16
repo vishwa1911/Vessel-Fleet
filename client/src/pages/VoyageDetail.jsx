@@ -83,21 +83,21 @@ export const VoyageDetail = () => {
       {/* Voyage Header Card */}
       <div className="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-ocean-500/20 to-teal-500/20 border border-ocean-500/30 flex items-center justify-center text-ocean-400">
+          <div className="w-16 h-16 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shadow-sm">
             <Compass className="w-8 h-8" />
           </div>
           <div>
             <div className="flex items-center gap-2.5">
-              <h1 className="text-2xl font-bold text-white tracking-tight">{v.voyageNo}</h1>
+              <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{v.voyageNo}</h1>
               <Badge status={v.status} size="md" />
               <SimulationTag />
             </div>
-            <p className="text-xs text-slate-300 mt-1 flex items-center gap-2">
-              <span className="font-semibold text-white">{v.origin?.name}</span> &rarr;{' '}
-              <span className="font-semibold text-ocean-400">{v.destination?.name}</span>
+            <p className="text-xs text-slate-600 mt-1 flex items-center gap-2">
+              <span className="font-semibold text-slate-900">{v.origin?.name}</span> &rarr;{' '}
+              <span className="font-semibold text-sky-600">{v.destination?.name}</span>
               &bull; Assigned Vessel:{' '}
               {v.vessel ? (
-                <Link to={`/vessels/${v.vessel._id}`} className="text-ocean-400 hover:underline font-semibold">
+                <Link to={`/vessels/${v.vessel._id}`} className="text-sky-600 hover:underline font-semibold">
                   {v.vessel.name}
                 </Link>
               ) : (
@@ -110,25 +110,25 @@ export const VoyageDetail = () => {
         {/* Progress & Delay Indicator */}
         <div className="flex items-center gap-6">
           <div className="text-right">
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
               Transit Progress
             </p>
-            <div className="text-2xl font-black text-white mt-0.5">{v.progressPercent || 0}%</div>
-            <div className="w-32 h-2 bg-slate-800 rounded-full mt-1 overflow-hidden">
+            <div className="text-2xl font-black text-slate-900 mt-0.5">{v.progressPercent || 0}%</div>
+            <div className="w-32 h-2.5 bg-sky-100 rounded-full mt-1 overflow-hidden shadow-inner">
               <div
-                className="h-full bg-ocean-500 rounded-full transition-all"
+                className="h-full bg-sky-500 rounded-full transition-all"
                 style={{ width: `${v.progressPercent || 0}%` }}
               />
             </div>
           </div>
 
           {v.delayHours > 0 && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
+            <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs">
               <p className="font-bold flex items-center gap-1">
-                <AlertTriangle className="w-4 h-4 text-rose-400" />
+                <AlertTriangle className="w-4 h-4 text-rose-500" />
                 Schedule Delay: +{v.delayHours} hrs
               </p>
-              <p className="text-[11px] text-rose-400 mt-0.5">
+              <p className="text-[11px] text-rose-600 mt-0.5">
                 Past planned arrival schedule
               </p>
             </div>

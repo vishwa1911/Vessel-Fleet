@@ -5,85 +5,198 @@
 @layer base {
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #e2e8f0;
-    background-color: #060e1a;
+    color: #1e293b;
+    background-color: #f0f9ff;
+    background-image: 
+      radial-gradient(#bae6fd 0.75px, transparent 0.75px),
+      radial-gradient(#e0f2fe 0.75px, #f0f9ff 0.75px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', 'Inter', sans-serif;
+    color: #0f172a;
   }
 }
 
-/* Custom Maritime Scrollbar */
+/* Custom Sky Blue Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b192c;
+  background: #f0f9ff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #bae6fd;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: #0ea5e9;
 }
 
-/* Glassmorphism Panel Utilities */
+/* Glassmorphism Panel Utilities - Sky Blue & Pure White */
 .glass-panel {
-  background: rgba(15, 34, 61, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+  background: #ffffff;
+  border: 1px solid #e0f2fe;
+  box-shadow: 0 4px 20px -2px rgba(14, 165, 233, 0.08), 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  border-radius: 0.875rem;
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(2, 132, 199, 0.4);
-  box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.15);
+  border-color: #38bdf8;
+  box-shadow: 0 8px 30px -4px rgba(14, 165, 233, 0.18), 0 2px 8px 0 rgba(0, 0, 0, 0.06);
 }
 
-/* Leaflet Tile Styling for Maritime Theme */
+/* Leaflet Tile Styling for Sky Blue & Pure White Theme */
 .leaflet-container {
   width: 100%;
   height: 100%;
   border-radius: 0.75rem;
-  background: #0b192c !important;
+  background: #f0f9ff !important;
   font-family: 'Inter', sans-serif !important;
 }
 
 .leaflet-popup-content-wrapper {
-  background: #0f223d !important;
-  color: #f1f5f9 !important;
-  border: 1px solid #334155 !important;
-  border-radius: 0.5rem !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #bae6fd !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.2) !important;
 }
 
 .leaflet-popup-tip {
-  background: #0f223d !important;
-  border: 1px solid #334155 !important;
+  background: #ffffff !important;
+  border: 1px solid #bae6fd !important;
 }
 
 /* Pulse animation for live simulated vessels */
 @keyframes pulse-ring {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.7);
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 8px rgba(2, 132, 199, 0);
+    box-shadow: 0 0 0 8px rgba(14, 165, 233, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0);
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
   }
 }
 
 .vessel-ping {
   animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+/* Sky Blue & Pure White UI Overrides for perfect contrast */
+.border-slate-800,
+.border-slate-700\/80,
+.border-slate-700 {
+  border-color: #e0f2fe !important;
+}
+
+.divide-slate-800\/60 > :not([hidden]) ~ :not([hidden]),
+.divide-slate-800 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #f0f9ff !important;
+}
+
+/* Muted text readability on pure white */
+.text-slate-400 {
+  color: #64748b !important;
+}
+
+.text-slate-300 {
+  color: #334155 !important;
+}
+
+.text-slate-200 {
+  color: #1e293b !important;
+}
+
+.text-slate-100 {
+  color: #0f172a !important;
+}
+
+/* High contrast headings on white backgrounds */
+h1.text-white,
+h2.text-white,
+h3.text-white,
+h4.text-white,
+.heading-white {
+  color: #0f172a !important;
+}
+
+/* Inputs, Selects, and Textareas: Pure White with Sky Blue focus */
+input, select, textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #bae6fd !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #0ea5e9 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15) !important;
+}
+
+input::placeholder, select::placeholder, textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Buttons and active badges preserve pure white text */
+button.text-white,
+a.text-white,
+.badge-white,
+.bg-ocean-600,
+.bg-ocean-500,
+.bg-sky-500,
+.bg-sky-600,
+.bg-emerald-500,
+.bg-rose-500,
+.bg-amber-500,
+.bg-purple-600 {
+  color: #ffffff !important;
+}
+
+.bg-ocean-600 *,
+.bg-ocean-500 *,
+.bg-sky-500 *,
+.bg-sky-600 * {
+  color: #ffffff !important;
+}
+
+/* Light theme notification and alert boxes */
+.bg-emerald-500\/10 {
+  background-color: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-color: #a7f3d0 !important;
+}
+.bg-rose-500\/10,
+.bg-rose-500\/15 {
+  background-color: #fff1f2 !important;
+  color: #9f1239 !important;
+  border-color: #fecdd3 !important;
+}
+.bg-amber-500\/10,
+.bg-amber-500\/20 {
+  background-color: #fffbeb !important;
+  color: #92400e !important;
+  border-color: #fde68a !important;
+}
+.bg-purple-500\/10 {
+  background-color: #faf5ff !important;
+  color: #581c87 !important;
+  border-color: #e9d5ff !important;
+}
+.bg-sky-500\/10 {
+  background-color: #f0f9ff !important;
+  color: #0369a1 !important;
+  border-color: #bae6fd !important;
 }

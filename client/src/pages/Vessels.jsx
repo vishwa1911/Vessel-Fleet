@@ -178,11 +178,11 @@ export const Vessels = () => {
         <div>
           <Link
             to={`/vessels/${v._id}`}
-            className="font-bold text-white hover:text-ocean-400 transition"
+            className="font-bold text-slate-800 hover:text-sky-600 transition"
           >
             {v.name}
           </Link>
-          <div className="text-[11px] text-slate-400">
+          <div className="text-[11px] text-slate-500">
             IMO: {v.imoNumber} &bull; Flag: {v.flag}
           </div>
         </div>
@@ -192,13 +192,13 @@ export const Vessels = () => {
       label: 'Type',
       key: 'type',
       sortable: true,
-      render: (v) => <span className="text-slate-300 font-medium">{v.type}</span>,
+      render: (v) => <span className="text-slate-700 font-medium">{v.type}</span>,
     },
     {
       label: 'Capacity (DWT)',
       key: 'capacityDwt',
       sortable: true,
-      render: (v) => <span>{formatNumber(v.capacityDwt)} MT</span>,
+      render: (v) => <span className="text-slate-700 font-medium">{formatNumber(v.capacityDwt)} MT</span>,
     },
     {
       label: 'Status',
@@ -211,10 +211,10 @@ export const Vessels = () => {
       key: 'lastKnownPosition',
       render: (v) => (
         <div>
-          <div className="text-xs text-slate-300">
+          <div className="text-xs text-slate-700">
             {formatCoordinates(v.lastKnownPosition?.lat, v.lastKnownPosition?.lng)}
           </div>
-          <div className="text-[10px] text-purple-400 font-medium">
+          <div className="text-[10px] text-sky-600 font-semibold">
             {v.lastKnownPosition?.speedKnots || 0} kn &bull; {v.lastKnownPosition?.source || 'simulated'}
           </div>
         </div>
@@ -224,7 +224,7 @@ export const Vessels = () => {
       label: 'Engine Hours',
       key: 'engineRunningHours',
       sortable: true,
-      render: (v) => <span>{formatNumber(v.engineRunningHours)} hrs</span>,
+      render: (v) => <span className="text-slate-700">{formatNumber(v.engineRunningHours)} hrs</span>,
     },
     {
       label: 'Actions',
@@ -235,7 +235,7 @@ export const Vessels = () => {
         <div className="flex items-center justify-end gap-2">
           <Link
             to={`/vessels/${v._id}`}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition"
+            className="p-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-slate-600 hover:text-sky-600 border border-sky-100 transition"
             title="View Details"
           >
             <Eye className="w-4 h-4" />
@@ -244,7 +244,7 @@ export const Vessels = () => {
           {hasRole('Admin', 'Fleet Operator') && (
             <button
               onClick={() => openEditModal(v)}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-400 hover:text-sky-300 transition"
+              className="p-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-600 hover:text-sky-700 border border-sky-100 transition"
               title="Edit Vessel"
             >
               <Edit2 className="w-4 h-4" />
@@ -257,7 +257,7 @@ export const Vessels = () => {
                 setSelectedVessel(v);
                 setDeleteDialogOpen(true);
               }}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 transition"
+              className="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 hover:text-rose-700 border border-rose-100 transition"
               title="Delete Vessel"
             >
               <Trash2 className="w-4 h-4" />
@@ -274,10 +274,10 @@ export const Vessels = () => {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">Fleet Vessel Registry</h1>
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Fleet Vessel Registry</h1>
             <SimulationTag />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Registered commercial vessels, technical specifications, real-time simulated positioning, and status.
           </p>
         </div>
@@ -303,7 +303,7 @@ export const Vessels = () => {
               setFormError('');
               setCreateModalOpen(true);
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-ocean-600 hover:bg-ocean-500 text-white font-medium text-xs rounded-lg transition shadow-md shadow-ocean-600/30"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-medium text-xs rounded-lg transition shadow-md shadow-sky-500/20"
           >
             <Plus className="w-4 h-4" />
             <span>Add New Vessel</span>
@@ -371,7 +371,7 @@ export const Vessels = () => {
         <form onSubmit={handleCreateSubmit} className="space-y-4 text-xs">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+              <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
                 Vessel Name *
               </label>
               <input
@@ -380,11 +380,11 @@ export const Vessels = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Pacific Mariner"
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
             <div>
-              <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+              <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
                 IMO Number (7 digits) *
               </label>
               <input
@@ -394,20 +394,20 @@ export const Vessels = () => {
                 value={formData.imoNumber}
                 onChange={(e) => setFormData({ ...formData, imoNumber: e.target.value })}
                 placeholder="e.g. 9425611"
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+              <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
                 Ship Type
               </label>
               <select
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               >
                 {VESSEL_TYPES.map((t) => (
                   <option key={t} value={t}>
@@ -417,7 +417,7 @@ export const Vessels = () => {
               </select>
             </div>
             <div>
-              <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+              <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
                 Flag State
               </label>
               <input
@@ -426,11 +426,11 @@ export const Vessels = () => {
                 value={formData.flag}
                 onChange={(e) => setFormData({ ...formData, flag: e.target.value })}
                 placeholder="Singapore"
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
             <div>
-              <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+              <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
                 Capacity (DWT)
               </label>
               <input
@@ -438,61 +438,61 @@ export const Vessels = () => {
                 required
                 value={formData.capacityDwt}
                 onChange={(e) => setFormData({ ...formData, capacityDwt: e.target.value })}
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-3 pt-2 border-t border-slate-800">
+          <div className="grid grid-cols-4 gap-3 pt-2 border-t border-sky-100">
             <div>
-              <label className="block text-slate-400 mb-1">Length (M)</label>
+              <label className="block text-slate-600 mb-1">Length (M)</label>
               <input
                 type="number"
                 value={formData.lengthM}
                 onChange={(e) => setFormData({ ...formData, lengthM: e.target.value })}
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
             <div>
-              <label className="block text-slate-400 mb-1">Beam (M)</label>
+              <label className="block text-slate-600 mb-1">Beam (M)</label>
               <input
                 type="number"
                 value={formData.beamM}
                 onChange={(e) => setFormData({ ...formData, beamM: e.target.value })}
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
             <div>
-              <label className="block text-slate-400 mb-1">Power (kW)</label>
+              <label className="block text-slate-600 mb-1">Power (kW)</label>
               <input
                 type="number"
                 value={formData.enginePowerKw}
                 onChange={(e) => setFormData({ ...formData, enginePowerKw: e.target.value })}
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
             <div>
-              <label className="block text-slate-400 mb-1">Built Year</label>
+              <label className="block text-slate-600 mb-1">Built Year</label>
               <input
                 type="number"
                 value={formData.builtYear}
                 onChange={(e) => setFormData({ ...formData, builtYear: e.target.value })}
-                className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+                className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               />
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-sky-100">
             <button
               type="button"
               onClick={() => setCreateModalOpen(false)}
-              className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700"
+              className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 border border-slate-200 font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-ocean-600 text-white rounded-lg hover:bg-ocean-500 font-semibold"
+              className="px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-md shadow-sky-500/20"
             >
               Register Vessel
             </button>
@@ -516,13 +516,13 @@ export const Vessels = () => {
 
         <form onSubmit={handleEditSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Operational Status
             </label>
             <select
               value={formData.status}
               onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             >
               {VESSEL_STATUSES.map((s) => (
                 <option key={s} value={s}>
@@ -533,40 +533,40 @@ export const Vessels = () => {
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Flag State
             </label>
             <input
               type="text"
               value={formData.flag}
               onChange={(e) => setFormData({ ...formData, flag: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Capacity DWT
             </label>
             <input
               type="number"
               value={formData.capacityDwt}
               onChange={(e) => setFormData({ ...formData, capacityDwt: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-sky-100">
             <button
               type="button"
               onClick={() => setEditModalOpen(false)}
-              className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700"
+              className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 border border-slate-200 font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-ocean-600 text-white rounded-lg hover:bg-ocean-500 font-semibold"
+              className="px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-md shadow-sky-500/20"
             >
               Save Changes
             </button>

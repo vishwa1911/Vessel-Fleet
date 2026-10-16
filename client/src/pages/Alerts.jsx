@@ -94,12 +94,12 @@ export const Alerts = () => {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
               Centralized Operational Alerts & Advisory Engine
             </h1>
             <SimulationTag />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Automated detection of schedule delays, bunker fuel overuse, overdue maintenance, route deviation, and cargo delivery risks.
           </p>
         </div>
@@ -107,32 +107,32 @@ export const Alerts = () => {
         <button
           onClick={handleRunEvaluation}
           disabled={evaluating}
-          className="flex items-center gap-2 px-4 py-2 bg-ocean-600 hover:bg-ocean-500 text-white font-medium text-xs rounded-lg transition shadow-md shadow-ocean-600/30 disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs rounded-xl transition shadow-md shadow-sky-500/20 disabled:opacity-50"
         >
-          <RefreshCw className={`w-4 h-4 ${evaluating ? 'animate-spin' : ''}`} />
-          <span>{evaluating ? 'Evaluating Fleet Rules...' : 'Re-Evaluate Alert Rules Now'}</span>
+          <RefreshCw className={`w-4 h-4 text-white ${evaluating ? 'animate-spin' : ''}`} />
+          <span className="text-white">{evaluating ? 'Evaluating Fleet Rules...' : 'Re-Evaluate Alert Rules Now'}</span>
         </button>
       </div>
 
       {message && (
-        <div className="p-3 bg-ocean-500/10 border border-ocean-500/30 rounded-lg text-ocean-300 text-xs flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4" />
+        <div className="p-3 bg-sky-50 border border-sky-200 rounded-xl text-sky-800 text-xs flex items-center gap-2 font-medium shadow-sm">
+          <CheckCircle2 className="w-4 h-4 text-sky-600" />
           <span>{message}</span>
         </div>
       )}
 
       {/* Filters Bar */}
-      <div className="glass-panel p-4 rounded-xl border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+      <div className="glass-panel p-4 rounded-xl border border-sky-100 bg-white shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex items-center bg-maritime-900 border border-slate-700/80 rounded-lg p-1 text-xs">
+          <div className="flex items-center bg-white border border-sky-200 rounded-xl p-1 text-xs shadow-sm">
             {['Open', 'Acknowledged', 'Resolved', 'All'].map((st) => (
               <button
                 key={st}
                 onClick={() => setStatusFilter(st)}
-                className={`px-3 py-1.5 rounded-md font-semibold transition ${
+                className={`px-3 py-1.5 rounded-lg font-semibold transition ${
                   statusFilter === st
-                    ? 'bg-ocean-600 text-white shadow'
-                    : 'text-slate-300 hover:text-white'
+                    ? 'bg-sky-500 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-sky-600'
                 }`}
               >
                 {st}
@@ -143,7 +143,7 @@ export const Alerts = () => {
           <select
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
-            className="px-3 py-1.5 bg-maritime-900 border border-slate-700/80 rounded-lg text-xs text-white"
+            className="px-3 py-1.5 bg-white border border-sky-200 rounded-lg text-xs text-slate-800 font-medium"
           >
             <option value="All">All Severities</option>
             {ALERT_SEVERITIES.map((sev) => (
@@ -154,8 +154,8 @@ export const Alerts = () => {
           </select>
         </div>
 
-        <span className="text-xs text-slate-400">
-          Showing <span className="font-semibold text-white">{alerts.length}</span> alert condition(s)
+        <span className="text-xs text-slate-500">
+          Showing <span className="font-bold text-slate-900">{alerts.length}</span> alert condition(s)
         </span>
       </div>
 
@@ -163,13 +163,13 @@ export const Alerts = () => {
       <div className="space-y-3">
         {loading ? (
           Array.from({ length: 4 }).map((_, idx) => (
-            <div key={idx} className="glass-panel p-5 rounded-xl border border-slate-800 animate-pulse h-28" />
+            <div key={idx} className="glass-panel bg-white p-5 rounded-xl border border-sky-100 animate-pulse h-28" />
           ))
         ) : alerts.length === 0 ? (
-          <div className="glass-panel p-12 text-center text-slate-400 rounded-xl">
-            <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto mb-2 opacity-80" />
-            <h3 className="font-bold text-white text-base">No Matching Alerts</h3>
-            <p className="text-xs text-slate-400 mt-1">
+          <div className="glass-panel bg-white p-12 text-center text-slate-500 rounded-xl border border-sky-100 shadow-sm">
+            <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-2 opacity-80" />
+            <h3 className="font-bold text-slate-900 text-base">No Matching Alerts</h3>
+            <p className="text-xs text-slate-500 mt-1">
               All monitored vessel parameters, voyage schedules, and cargo status are within normal operational limits.
             </p>
           </div>
@@ -177,14 +177,14 @@ export const Alerts = () => {
           alerts.map((alt) => (
             <div
               key={alt._id}
-              className={`glass-panel p-5 rounded-xl border transition-all ${
+              className={`glass-panel bg-white p-5 rounded-xl border transition-all shadow-sm ${
                 alt.status === 'Resolved'
-                  ? 'border-slate-800/80 opacity-70'
+                  ? 'border-slate-200 opacity-70'
                   : alt.severity === 'Critical'
-                  ? 'border-rose-500/40 bg-rose-950/10'
+                  ? 'border-rose-300 bg-rose-50/30'
                   : alt.severity === 'High'
-                  ? 'border-orange-500/30'
-                  : 'border-slate-800'
+                  ? 'border-orange-200 bg-orange-50/20'
+                  : 'border-sky-100'
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
@@ -193,10 +193,10 @@ export const Alerts = () => {
                     <span
                       className={`text-sm font-bold ${
                         alt.severity === 'Critical'
-                          ? 'text-rose-400'
+                          ? 'text-rose-600'
                           : alt.severity === 'High'
-                          ? 'text-orange-400'
-                          : 'text-amber-400'
+                          ? 'text-orange-600'
+                          : 'text-amber-600'
                       }`}
                     >
                       {alt.type}
@@ -208,20 +208,20 @@ export const Alerts = () => {
                     </span>
                   </div>
 
-                  <p className="text-sm font-medium text-white">{alt.reason}</p>
+                  <p className="text-sm font-semibold text-slate-900">{alt.reason}</p>
 
                   {/* Operational Recommendation Box */}
-                  <div className="p-3 rounded-lg bg-maritime-950/80 border border-slate-800/80 text-xs text-slate-300">
-                    <span className="font-semibold text-ocean-400">Recommended Action: </span>
+                  <div className="p-3 rounded-xl bg-sky-50/70 border border-sky-100 text-xs text-slate-700">
+                    <span className="font-bold text-sky-700">Recommended Action: </span>
                     {alt.recommendedAction}
                   </div>
 
                   {/* Related Links */}
-                  <div className="flex items-center gap-3 text-[11px] text-slate-400 pt-1">
+                  <div className="flex items-center gap-3 text-[11px] text-slate-500 pt-1">
                     {alt.vessel && (
                       <Link
                         to={`/vessels/${alt.vessel._id}`}
-                        className="inline-flex items-center gap-1 text-slate-300 hover:text-ocean-400"
+                        className="inline-flex items-center gap-1 text-slate-600 hover:text-sky-600 font-medium"
                       >
                         <Ship className="w-3.5 h-3.5" />
                         <span>Vessel: {alt.vessel.name}</span>
@@ -230,14 +230,14 @@ export const Alerts = () => {
                     {alt.voyage && (
                       <Link
                         to={`/voyages/${alt.voyage._id}`}
-                        className="inline-flex items-center gap-1 text-slate-300 hover:text-ocean-400"
+                        className="inline-flex items-center gap-1 text-slate-600 hover:text-sky-600 font-medium"
                       >
                         <Compass className="w-3.5 h-3.5" />
                         <span>Voyage: {alt.voyage.voyageNo}</span>
                       </Link>
                     )}
                     {alt.cargo && (
-                      <span className="inline-flex items-center gap-1 text-slate-400">
+                      <span className="inline-flex items-center gap-1 text-slate-500">
                         <Package className="w-3.5 h-3.5" />
                         <span>Shipment: {alt.cargo.shipmentNo}</span>
                       </span>
@@ -250,7 +250,7 @@ export const Alerts = () => {
                   {alt.status === 'Open' && (
                     <button
                       onClick={() => handleAcknowledge(alt._id)}
-                      className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition"
+                      className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 transition shadow-sm"
                     >
                       Acknowledge
                     </button>
@@ -259,9 +259,9 @@ export const Alerts = () => {
                   {alt.status !== 'Resolved' && (
                     <button
                       onClick={() => handleResolve(alt._id)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30 transition"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-sm"
                     >
-                      <Check className="w-3.5 h-3.5" />
+                      <Check className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Mark Resolved</span>
                     </button>
                   )}

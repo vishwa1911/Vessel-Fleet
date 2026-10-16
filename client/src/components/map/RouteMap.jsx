@@ -61,16 +61,16 @@ export const RouteMap = ({
   const shipIcon = hasCurrentPos ? createShipIcon(currentPosition.heading || 0) : null;
 
   return (
-    <div className="relative glass-panel rounded-xl overflow-hidden border border-slate-800 flex flex-col">
+    <div className="relative glass-panel rounded-xl overflow-hidden border border-sky-100 bg-white shadow-sm flex flex-col">
       {/* Route Header */}
-      <div className="p-3.5 border-b border-slate-800 flex items-center justify-between bg-maritime-900/90 z-[400] relative">
+      <div className="p-3.5 border-b border-sky-100 flex items-center justify-between bg-white z-[400] relative">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
-          <h4 className="font-semibold text-white text-xs tracking-wide">
+          <span className="w-2.5 h-2.5 rounded-full bg-sky-500" />
+          <h4 className="font-bold text-slate-900 text-xs tracking-wide">
             Transit Navigation &amp; Route Polyline
           </h4>
           {deviationNm > 0 && (
-            <span className="text-[11px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-semibold">
               Cross-Track Deviation: {deviationNm.toFixed(1)} NM
             </span>
           )}
@@ -178,7 +178,7 @@ export const RouteMap = ({
       </div>
 
       {/* Map Legend */}
-      <div className="px-4 py-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 bg-maritime-900/80">
+      <div className="px-4 py-2 border-t border-sky-100 flex items-center justify-between text-xs text-slate-600 bg-sky-50/50">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" /> Origin

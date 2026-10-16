@@ -71,45 +71,45 @@ export const Dashboard = () => {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
               Fleet Operations & Intelligence Control
             </h1>
             <SimulationTag />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Real-time telemetry, MongoDB aggregated metrics, voyage scheduling, and automated rule-based alerts.
           </p>
         </div>
 
         {/* Date Range Filter & Refresh */}
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center bg-maritime-900 border border-slate-700/80 rounded-lg p-1 text-xs">
+          <div className="flex items-center bg-white border border-sky-200 rounded-xl p-1 text-xs shadow-sm">
             <button
               onClick={() => setDateRange('7days')}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-3 py-1.5 rounded-lg transition font-medium ${
                 dateRange === '7days'
-                  ? 'bg-ocean-600 text-white font-semibold shadow'
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-sky-500 text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-sky-600'
               }`}
             >
               7 Days
             </button>
             <button
               onClick={() => setDateRange('30days')}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-3 py-1.5 rounded-lg transition font-medium ${
                 dateRange === '30days'
-                  ? 'bg-ocean-600 text-white font-semibold shadow'
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-sky-500 text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-sky-600'
               }`}
             >
               30 Days
             </button>
             <button
               onClick={() => setDateRange('all')}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-3 py-1.5 rounded-lg transition font-medium ${
                 dateRange === 'all'
-                  ? 'bg-ocean-600 text-white font-semibold shadow'
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-sky-500 text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-sky-600'
               }`}
             >
               All Time
@@ -119,7 +119,7 @@ export const Dashboard = () => {
           <button
             onClick={fetchDashboardData}
             disabled={loading}
-            className="p-2 rounded-lg bg-maritime-900 border border-slate-700/80 hover:bg-slate-800 text-slate-300 hover:text-white transition"
+            className="p-2.5 rounded-xl bg-white border border-sky-200 hover:bg-sky-50 text-slate-600 hover:text-sky-600 transition shadow-sm"
             title="Refresh dashboard metrics"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -315,10 +315,10 @@ export const Dashboard = () => {
           <div className="mt-4 pt-3 border-t border-slate-800/80">
             <Link
               to="/alerts"
-              className="w-full py-2 px-3 rounded-lg bg-maritime-800 hover:bg-slate-700 text-white font-medium text-xs flex items-center justify-center gap-1.5 transition"
+              className="w-full py-2.5 px-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition shadow-md shadow-sky-500/20"
             >
-              <span>Manage & Acknowledge All Alerts</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span className="text-white">Manage & Acknowledge All Alerts</span>
+              <ArrowRight className="w-3.5 h-3.5 text-white" />
             </Link>
           </div>
         </div>

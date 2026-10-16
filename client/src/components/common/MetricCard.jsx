@@ -11,12 +11,12 @@ export const MetricCard = ({
   onClick,
 }) => {
   const colorStyles = {
-    ocean: 'border-ocean-500/20 text-ocean-400 bg-ocean-500/10',
-    emerald: 'border-emerald-500/20 text-emerald-400 bg-emerald-500/10',
-    amber: 'border-amber-500/20 text-amber-400 bg-amber-500/10',
-    rose: 'border-rose-500/20 text-rose-400 bg-rose-500/10',
-    purple: 'border-purple-500/20 text-purple-400 bg-purple-500/10',
-    teal: 'border-teal-500/20 text-teal-400 bg-teal-500/10',
+    ocean: 'border-sky-200 text-sky-600 bg-sky-50',
+    emerald: 'border-emerald-200 text-emerald-600 bg-emerald-50',
+    amber: 'border-amber-200 text-amber-600 bg-amber-50',
+    rose: 'border-rose-200 text-rose-600 bg-rose-50',
+    purple: 'border-purple-200 text-purple-600 bg-purple-50',
+    teal: 'border-sky-200 text-sky-700 bg-sky-50',
   };
 
   const activeColor = colorStyles[color] || colorStyles.ocean;
@@ -25,31 +25,31 @@ export const MetricCard = ({
     <div
       onClick={onClick}
       className={`glass-panel p-5 rounded-xl transition-all duration-200 ${
-        onClick ? 'cursor-pointer hover:border-ocean-500/40 hover:-translate-y-0.5' : ''
+        onClick ? 'cursor-pointer hover:border-sky-300 hover:shadow-sky-glow hover:-translate-y-0.5' : ''
       }`}
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
             {title}
           </p>
-          <h3 className="text-2xl font-bold text-white mt-1.5 tracking-tight font-sans">
+          <h3 className="text-2xl font-bold text-slate-900 mt-1.5 tracking-tight font-sans">
             {value}
           </h3>
         </div>
         {Icon && (
-          <div className={`p-2.5 rounded-lg border ${activeColor}`}>
+          <div className={`p-2.5 rounded-xl border ${activeColor} shadow-sm`}>
             <Icon className="w-5 h-5" />
           </div>
         )}
       </div>
 
       {(subtitle || trend) && (
-        <div className="mt-3 flex items-center gap-2 text-xs text-slate-400">
+        <div className="mt-3 flex items-center gap-2 text-xs text-slate-500 font-medium">
           {trend && (
             <span
               className={`font-semibold ${
-                trendPositive ? 'text-emerald-400' : 'text-rose-400'
+                trendPositive ? 'text-emerald-600' : 'text-rose-600'
               }`}
             >
               {trend}

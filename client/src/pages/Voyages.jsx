@@ -251,10 +251,10 @@ export const Voyages = () => {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">Voyage Operations & Routing</h1>
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Voyage Operations & Routing</h1>
             <SimulationTag />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1 font-medium">
             Voyage scheduling with vessel conflict prevention, Haversine distance, progress tracking, and delay alerts.
           </p>
         </div>
@@ -277,19 +277,19 @@ export const Voyages = () => {
               setFormError('');
               setCreateModalOpen(true);
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-ocean-600 hover:bg-ocean-500 text-white font-medium text-xs rounded-lg transition shadow-md shadow-ocean-600/30"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs rounded-xl transition shadow-md shadow-sky-500/20"
           >
-            <Plus className="w-4 h-4" />
-            <span>Create New Voyage</span>
+            <Plus className="w-4 h-4 text-white" />
+            <span className="text-white">Create New Voyage</span>
           </button>
         )}
       </div>
 
       {/* Info Callout */}
-      <div className="p-3.5 rounded-xl bg-maritime-900/80 border border-slate-800 flex items-start gap-3 text-xs">
-        <Info className="w-4 h-4 text-ocean-400 flex-shrink-0 mt-0.5" />
-        <div className="text-slate-300">
-          <span className="font-semibold text-white">Demonstration Haversine Calculations:</span> Route distances and transit ETAs are computed along spherical great-circle waypoint coordinates. The scheduling engine automatically verifies vessel availability to prevent double-booking conflicts.
+      <div className="p-3.5 rounded-xl bg-sky-50/70 border border-sky-100 flex items-start gap-3 text-xs">
+        <Info className="w-4 h-4 text-sky-500 flex-shrink-0 mt-0.5" />
+        <div className="text-slate-600">
+          <span className="font-bold text-slate-900">Demonstration Haversine Calculations:</span> Route distances and transit ETAs are computed along spherical great-circle waypoint coordinates. The scheduling engine automatically verifies vessel availability to prevent double-booking conflicts.
         </div>
       </div>
 

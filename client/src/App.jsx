@@ -27,10 +27,10 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-maritime-950 flex items-center justify-center text-ocean-400">
+      <div className="min-h-screen bg-sky-50 flex items-center justify-center text-ocean-500">
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-2 border-ocean-500 border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs uppercase tracking-widest text-slate-400">Verifying Credentials...</span>
+          <span className="text-xs uppercase tracking-widest text-slate-500 font-semibold">Verifying Credentials...</span>
         </div>
       </div>
     );
@@ -52,7 +52,7 @@ const AppLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-maritime-950 text-slate-100 flex">
+    <div className="min-h-screen bg-sky-50 text-slate-800 flex">
       {/* Sidebar Navigation */}
       <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
 

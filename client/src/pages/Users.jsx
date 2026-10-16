@@ -141,8 +141,8 @@ export const Users = () => {
       key: 'name',
       render: (u) => (
         <div>
-          <span className="font-bold text-white">{u.name}</span>
-          <div className="text-[11px] text-slate-400">{u.email}</div>
+          <span className="font-bold text-slate-800">{u.name}</span>
+          <div className="text-[11px] text-slate-500">{u.email}</div>
         </div>
       ),
     },
@@ -150,7 +150,7 @@ export const Users = () => {
       label: 'Assigned Role',
       key: 'role',
       render: (u) => (
-        <span className="px-2.5 py-0.5 text-xs font-semibold rounded bg-ocean-500/20 text-ocean-300 border border-ocean-500/30">
+        <span className="px-2.5 py-0.5 text-xs font-semibold rounded bg-sky-50 text-sky-700 border border-sky-200">
           {u.role}
         </span>
       ),
@@ -161,7 +161,7 @@ export const Users = () => {
       render: (u) => (
         <span
           className={`px-2 py-0.5 text-xs font-bold rounded-full ${
-            u.isActive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'
+            u.isActive ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-200' : 'bg-rose-500/10 text-rose-600 border border-rose-200'
           }`}
         >
           {u.isActive ? 'Active' : 'Deactivated'}
@@ -171,7 +171,7 @@ export const Users = () => {
     {
       label: 'Joined Date',
       key: 'createdAt',
-      render: (u) => <span className="text-slate-300">{formatDate(u.createdAt)}</span>,
+      render: (u) => <span className="text-slate-600 font-medium">{formatDate(u.createdAt)}</span>,
     },
     {
       label: 'Actions',
@@ -182,7 +182,7 @@ export const Users = () => {
         <div className="flex items-center justify-end gap-2">
           <button
             onClick={() => openEditModal(u)}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-400 hover:text-sky-300 transition"
+            className="p-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-600 hover:text-sky-700 border border-sky-100 transition"
             title="Edit User"
           >
             <Edit2 className="w-3.5 h-3.5" />
@@ -194,7 +194,7 @@ export const Users = () => {
                 setSelectedUser(u);
                 setDeleteDialogOpen(true);
               }}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 transition"
+              className="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 hover:text-rose-700 border border-rose-100 transition"
               title="Delete User"
             >
               <Trash2 className="w-3.5 h-3.5" />
@@ -210,8 +210,8 @@ export const Users = () => {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Staff & Access Management</h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Staff & Access Management</h1>
+          <p className="text-xs text-slate-500 mt-1">
             Administrator management of platform users and Role-Based Access Control (RBAC) permissions.
           </p>
         </div>
@@ -227,7 +227,7 @@ export const Users = () => {
             setFormError('');
             setCreateModalOpen(true);
           }}
-          className="flex items-center gap-2 px-4 py-2 bg-ocean-600 hover:bg-ocean-500 text-white font-medium text-xs rounded-lg transition shadow-md shadow-ocean-600/30"
+          className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-medium text-xs rounded-lg transition shadow-md shadow-sky-500/20"
         >
           <Plus className="w-4 h-4" />
           <span>Add User Account</span>
@@ -285,7 +285,7 @@ export const Users = () => {
 
         <form onSubmit={handleCreateSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Full Name *
             </label>
             <input
@@ -293,12 +293,12 @@ export const Users = () => {
               required
               value={createFormData.name}
               onChange={(e) => setCreateFormData({ ...createFormData, name: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Email Address *
             </label>
             <input
@@ -306,12 +306,12 @@ export const Users = () => {
               required
               value={createFormData.email}
               onChange={(e) => setCreateFormData({ ...createFormData, email: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Temporary Password *
             </label>
             <input
@@ -320,18 +320,18 @@ export const Users = () => {
               minLength={6}
               value={createFormData.password}
               onChange={(e) => setCreateFormData({ ...createFormData, password: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               System Role *
             </label>
             <select
               value={createFormData.role}
               onChange={(e) => setCreateFormData({ ...createFormData, role: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             >
               {ROLE_OPTIONS.map((r) => (
                 <option key={r} value={r}>
@@ -341,17 +341,17 @@ export const Users = () => {
             </select>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-sky-100">
             <button
               type="button"
               onClick={() => setCreateModalOpen(false)}
-              className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700"
+              className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 border border-slate-200 font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-ocean-600 text-white rounded-lg hover:bg-ocean-500 font-semibold"
+              className="px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-md shadow-sky-500/20"
             >
               Create Account
             </button>
@@ -375,7 +375,7 @@ export const Users = () => {
 
         <form onSubmit={handleEditSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Full Name *
             </label>
             <input
@@ -383,18 +383,18 @@ export const Users = () => {
               required
               value={editFormData.name}
               onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               System Role *
             </label>
             <select
               value={editFormData.role}
               onChange={(e) => setEditFormData({ ...editFormData, role: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             >
               {ROLE_OPTIONS.map((r) => (
                 <option key={r} value={r}>
@@ -405,13 +405,13 @@ export const Users = () => {
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Account Active Status
             </label>
             <select
               value={editFormData.isActive ? 'true' : 'false'}
               onChange={(e) => setEditFormData({ ...editFormData, isActive: e.target.value === 'true' })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             >
               <option value="true">Active (Allowed to sign in)</option>
               <option value="false">Deactivated</option>
@@ -419,7 +419,7 @@ export const Users = () => {
           </div>
 
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold uppercase tracking-wider">
+            <label className="block text-slate-700 mb-1 font-semibold uppercase tracking-wider">
               Reset Password (Optional)
             </label>
             <input
@@ -427,21 +427,21 @@ export const Users = () => {
               placeholder="Leave blank to preserve current password"
               value={editFormData.newPassword}
               onChange={(e) => setEditFormData({ ...editFormData, newPassword: e.target.value })}
-              className="w-full px-3 py-2 bg-maritime-900 border border-slate-700 rounded-lg text-white"
+              className="w-full px-3 py-2 bg-white border border-sky-200 rounded-lg text-slate-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-sky-100">
             <button
               type="button"
               onClick={() => setEditModalOpen(false)}
-              className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700"
+              className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 border border-slate-200 font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-ocean-600 text-white rounded-lg hover:bg-ocean-500 font-semibold"
+              className="px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-md shadow-sky-500/20"
             >
               Save Changes
             </button>
