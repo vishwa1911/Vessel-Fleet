@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require('path');
+const fs = require('fs');
 
 const authRoutes = require('./routes/authRoutes');
 const vesselRoutes = require('./routes/vesselRoutes');
@@ -162,6 +164,18 @@ app.use('/api/settings', settingsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/simulation', simulationRouter);
 app.post('/api/demo/reset', protect, authorize('Admin'), resetDemoData);
+
+// Serve static frontend build if it exists (Render monolithic production deployment)
+const clientDist = path.join(__dirname, '../../client/dist');
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
 
 // 404 Handler for unknown API routes
 app.use('/api/*', (req, res) => {
