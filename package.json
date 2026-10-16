@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Smart Maritime Fleet Management & Voyage Optimization Platform (MERN)",
   "scripts": {
-    "build": "npm install --prefix server && npm install --prefix client && npm run --prefix client build",
+    "build": "npm install --prefix server && npm install --prefix client --include=dev && npm run --prefix client build",
     "start": "node server/src/server.js",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "npm run --prefix server dev",
